@@ -1,5 +1,4 @@
 import { model, Schema } from "mongoose";
-import { CategoryModel } from "./CategoryModel";
 
 const EventsSchema = new Schema(
   {
