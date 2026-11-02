@@ -3,7 +3,8 @@ import cors from "cors";
 import "dotenv/config";
 import express from "express";
 import { connectDB } from "./src/config/database.js";
-import { routes } from "./src/routes/index.js";
+import { usersRouter } from "./src/routes/users.routes.js";
+import { authRouter } from "./src/routes/auth.routes.js";
 
 const app = express();
 const PORT = process.env.PORT;
@@ -14,7 +15,8 @@ app.use(cors());
 app.use(cookieParser()); //para poder leer las cookies
 
 // rutas
-app.use("/api", routes);
+app.use("/api/users", usersRouter);
+app.use("/api/auth", authRouter);
 
 app.listen(PORT, async () => {
   await connectDB();

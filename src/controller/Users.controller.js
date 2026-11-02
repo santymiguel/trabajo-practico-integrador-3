@@ -1,5 +1,5 @@
-import { hashPassword } from "../helpers/bcrypt.helper";
-import { UserModel } from "../models/UserModel";
+import { hashPassword } from "../helpers/bcrypt.helper.js";
+import { UserModel } from "../models/UserModel.js";
 
 export const getUsers = async (req, res) => {
   try {
