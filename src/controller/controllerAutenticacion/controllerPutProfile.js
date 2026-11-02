@@ -1,6 +1,5 @@
 import { matchedData } from "express-validator";
-import { UserModel } from "../../models/UserModel.js";
-
+import { UserModel } from "../../models/UserModel";
 export const updateProfile = async (req, res) => {
   try {
     const data = matchedData(req, { locations: ["body"] });
