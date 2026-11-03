@@ -1,5 +1,6 @@
 import { hashPassword } from "../helpers/bcrypt.helper.js";
 import { UserModel } from "../models/UserModel.js";
+import { matchedData } from "express-validator";
 
 export const getUsers = async (req, res) => {
   try {
