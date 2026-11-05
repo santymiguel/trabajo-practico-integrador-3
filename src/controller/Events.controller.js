@@ -46,3 +46,68 @@ export const postEvent = async (req, res) => {
     });
   }
 };
+
+export const getEvents = async (req, res) => {
+  try {
+    const events = await EventModel.find().populate("organizer categories");
+    return res.status(200).json({ ok: true, body: events });
+  } catch (err) {
+    return res.status(500).json({
+      ok: false,
+      message: "Error al buscar los eventos",
+    });
+  }
+};
+
+export const getMyEvents = async (req, res) => {
+  try {
+    const user_id = req.user.id;
+    const events = await EventModel.find({ organizer: user_id }).populate(
+      "organizer categories",
+    );
+    return res.status(200).json({ ok: true, body: events });
+  } catch (err) {
+    return res.status(500).json({
+      ok: false,
+      message: "Error al buscar los eventos",
+    });
+  }
+};
+
+export const getEventById = async (req, res) => {
+  try {
+    const event_id = req.params.id;
+    const event = await EventModel.findById(event_id).populate(
+      "organizer categories",
+    );
+    if (!event) {
+      return res.status(404).json({
+        ok: false,
+        message: "Evento no encontrado",
+      });
+    }
+    return res.status(200).json({ ok: true, body: event });
+  } catch (err) {
+    return res.status(500).json({
+      ok: false,
+      message: "Error al buscar los eventos",
+    });
+  }
+};
+
+export const putEvent = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const data = matchedData(req, { locations: ["body"] });
+    const newEvent = await EventModel.findByIdAndUpdate(
+      { _id: id },
+      { ...data },
+      { new: true, runValidators: true },
+    );
+  } catch (err) {
+    return res.status(500).json({
+      ok: false,
+      message: "Error al buscar los eventos",
+    });
+  }
+};

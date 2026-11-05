@@ -1,0 +1,50 @@
+@url = http://localhost:3000/api/categories
+
+### 1. POST - Categoría válida
+# Debe crear la categoría correctamente.
+
+POST {{url}}
+Content-Type: application/json
+
+{
+  "name": "Fútbol",
+  "description": "Categoría de eventos deportivos"
+}
+
+### 2. POST - Campos inválidos
+# Debe rechazar:
+# - name vacío
+# - description superior a 200 caracteres
+
+POST {{url}}
+Content-Type: application/json
+
+{
+  "name": " ",
+  "description": "Esta descripción es demasiado larga para la validación establecida. Esta descripción es demasiado larga para la validación establecida. Esta descripción es demasiado larga para la validación establecida. Esta descripción es demasiado larga para la validación establecida."
+}
+
+### 3. POST - Nombre duplicado
+# Primero ejecutá la consulta 1.
+# Debe rechazar el nombre porque ya existe.
+
+POST {{url}}
+Content-Type: application/json
+
+{
+  "name": "Fútbol",
+  "description": "Otra descripción para probar la unicidad"
+}
+
+### 4. POST - Límites extremos
+# name tiene exactamente 2 caracteres.
+# description está vacía.
+# Debe aceptarse si description es opcional.
+
+POST {{url}}
+Content-Type: application/json
+
+{
+  "name": "AB",
+  "description": ""
+}

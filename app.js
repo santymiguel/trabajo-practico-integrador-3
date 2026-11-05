@@ -5,9 +5,10 @@ import express from "express";
 import { connectDB } from "./src/config/database.js";
 import { usersRouter } from "./src/routes/users.routes.js";
 import { authRouter } from "./src/routes/auth.routes.js";
+import { eventRouter } from "./src/routes/event.routes.js";
 
 const app = express();
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 
 // middlewares
 app.use(express.json());
@@ -17,6 +18,7 @@ app.use(cookieParser()); //para poder leer las cookies
 // rutas
 app.use("/api/users", usersRouter);
 app.use("/api/auth", authRouter);
+app.use("/api", eventRouter);
 
 app.listen(PORT, async () => {
   await connectDB();

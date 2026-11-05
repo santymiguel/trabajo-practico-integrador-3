@@ -11,7 +11,7 @@ import {
   validationDeleteUser,
   validationGetUser,
   validationUpdateUser,
-} from "../middlewares/validaciones/usersValidaciones.js";
+} from "../middlewares/validaciones/users.validations.js";
 import { validate } from "../middlewares/validaciones/validate.js";
 
 export const usersRouter = Router();

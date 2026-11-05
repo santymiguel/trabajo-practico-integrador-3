@@ -9,7 +9,7 @@ import {
   validationLogin,
   validationPutProfile,
   validationRegister,
-} from "../middlewares/validaciones/authValidaciones.js";
+} from "../middlewares/validaciones/auth.validation.js";
 import { validate } from "../middlewares/validaciones/validate.js";
 
 export const authRouter = Router();
